@@ -14,10 +14,16 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import axios from "axios";
+import Router from "next/router";
 
 function Copyright(props) {
   return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
+    <Typography
+      variant="body2"
+      color="text.secondary"
+      align="center"
+      {...props}
+    >
       {"Copyright © "}
       <Link color="inherit" href="https://mui.com/">
         Your Website
@@ -34,13 +40,23 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const handleSubmit = async (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    const obj = {
-      email: email,
-      password: password,
-    };
-    const res = await axios.post("", obj);
+    try {
+      event.preventDefault();
+      const data = new FormData(event.currentTarget);
+      const obj = {
+        email: email,
+        password: password,
+      };
+      console.log(obj);
+      const res = await axios.post(
+        "https://3bed-2405-201-4022-e94c-d86f-2661-841d-c787.ngrok.io/backend/authenticate/",
+        obj
+      );
+      console.log(res.data);
+      Router.push("/dashboard?email=" + email);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -61,7 +77,12 @@ export default function Login() {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <Box
+            component="form"
+            onSubmit={handleSubmit}
+            noValidate
+            sx={{ mt: 1 }}
+          >
             <TextField
               margin="normal"
               required
@@ -91,7 +112,12 @@ export default function Login() {
               }}
             />
             {/* <FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Remember me" /> */}
-            <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+            >
               Sign In
             </Button>
             <Grid container>
