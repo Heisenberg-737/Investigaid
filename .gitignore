@@ -33,3 +33,7 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+/env
+/__pycache__
+/tiptrack/__pycache__
