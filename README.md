@@ -15,7 +15,7 @@
 * The **system scores each tip-off** with help of a machine learning model that uses NLP and is trained on historical data.
 
 ## Tech Stack Used :
-* Solidity
+* Blockchain ( Solidity )
 * Machine learning ( NLP )
 * Flask 
 * ReactJS
