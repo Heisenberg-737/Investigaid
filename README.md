@@ -19,6 +19,3 @@
 * Machine learning ( NLP )
 * Flask 
 * ReactJS
-
-## To Run the project locally follow these steps
-* 
